@@ -18,3 +18,8 @@ public class App {
               BuilderDemo.runBuilder();
             }
 }
+
+//Mini Explicacion:
+// Este tipo de codigo llega a implementar el patron de diseño de Builer el cual nos permite contruir un objeto paso a paso. en este ejemplo, 
+//Creamos una computadora en el cual configuramos su procesador,Memoria Ram y almacenamiento. La clase Computadopra buildernos permite  ontrir las caracteristicas
+//Mediante mtodo y con un build() se llega a crear el objeto 

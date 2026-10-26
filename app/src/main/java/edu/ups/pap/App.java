@@ -3,7 +3,15 @@
  */
 package edu.ups.pap;
 
+import java.util.List;
+
 import edu.ups.pap.creacionales.BuilderDemo;
+import edu.ups.pap.creacionales.Builder1.Pizza;
+import edu.ups.pap.creacionales.Builder1.PizzaBuilder;
+import edu.ups.pap.creacionales.prototype.PlantillaEmail;
+import edu.ups.pap.factoryMethod.Importador;
+import edu.ups.pap.factoryMethod.ImportadorPuntoComa;
+import edu.ups.pap.factoryMethod.ImportadorTabulacion;
 
 public class App {
     public String getGreeting() {
@@ -11,12 +19,42 @@ public class App {
     }
 
     public static void main(String[] args) {
+        //runBuilder();
+        //runFactoryMethod();
+        runPrototype();
         runBuilder();
+                                    }
+                                
+                private static void runBuilder() {
+                Pizza pizza = new PizzaBuilder().setSize("Large").addIngrediente("Jamon").addIngrediente("Queso")
+                .addIngrediente("Salami").build(); 
+                System.out.println(pizza.descripcion());
+
+                Pizza pizza2= new PizzaBuilder().addIngrediente("Queso").build();
             }
         
-            private static void runBuilder() {
-              BuilderDemo.runBuilder();
-            }
+                private static void runPrototype() {
+            PlantillaEmail pemail= new PlantillaEmail("Aviso", "Pedido listo");
+            PlantillaEmail pEmailSolicitud= pemail.clone();
+            pEmailSolicitud.cambiarAsunto("Solicitud");
+            System.out.println(pemail.contenido());
+            System.out.println(pEmailSolicitud.contenido());
+        }
+        
+         //private static void runFactoryMethod() {
+                       // Importador impPc= new ImportadorPuntoComa();
+                        //Importador impT= new ImportadorTabulacion();
+                        //Implemento el crearLector()
+                        //Para devolver LectorPuntoYcoma;
+
+                        //System.out.println(impPc.importacion(List.of("S01;22.5;C" , "SO2;18;C")));
+                        //System.out.println(impT.importacion(List.of("S01;22.5;C" , "SO2;18;C")));
+                
+            //}
+        
+                   // private static void runBuilder() {
+              //BuilderDemo.runBuilder();
+           // }
 }
 
 //Mini Explicacion:

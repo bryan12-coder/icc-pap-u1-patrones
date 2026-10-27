@@ -41,7 +41,7 @@ public final class PizzaBuilder {
     //Metodo Build
     //Me devuelve el producto
     public Pizza build(){
-        return new Pizza(size, "Queso" + ingredientes.toString());
+        return new Pizza(size, new ArrayList<>());
 
         //Builder(Nombre) es el valor por defecto  ---> Contructor de
     }

@@ -5,9 +5,14 @@ package edu.ups.pap;
 
 import java.util.List;
 
-import edu.ups.pap.creacionales.BuilderDemo;
 import edu.ups.pap.creacionales.Builder1.Pizza;
 import edu.ups.pap.creacionales.Builder1.PizzaBuilder;
+import edu.ups.pap.creacionales.Ejemplo.BuilderDemo;
+import edu.ups.pap.creacionales.practica.configuracion.ConfigracionSistema;
+import edu.ups.pap.creacionales.practica.configuracion.creadores.CreadorEnLinea;
+import edu.ups.pap.creacionales.practica.configuracion.creadores.CreadorPedido;
+import edu.ups.pap.creacionales.practica.configuracion.creadores.CreadorPresencial;
+import edu.ups.pap.creacionales.practica.configuracion.pedidos.Pedido;
 import edu.ups.pap.creacionales.prototype.PlantillaEmail;
 import edu.ups.pap.factoryMethod.Importador;
 import edu.ups.pap.factoryMethod.ImportadorPuntoComa;
@@ -21,25 +26,67 @@ public class App {
     public static void main(String[] args) {
         //runBuilder();
         //runFactoryMethod();
-        runPrototype();
-        runBuilder();
-                                    }
-                                
-                private static void runBuilder() {
-                Pizza pizza = new PizzaBuilder().setSize("Large").addIngrediente("Jamon").addIngrediente("Queso")
-                .addIngrediente("Salami").build(); 
-                System.out.println(pizza.descripcion());
+        //runPrototype();
+        //runBuilder();
+        runPedido();
+                
+                        
+                                                    }
+        
+            private static void runPedido() {
+                ConfigracionSistema config = ConfigracionSistema.getInstancia();
 
-                Pizza pizza2= new PizzaBuilder().addIngrediente("Queso").build();
+        System.out.println("Configuración del sistema");
+        System.out.println("Impuesto: "
+                + config.getImpuesto() + "%");
+
+        System.out.println();
+
+        // Crear pedido presencial
+        CreadorPedido creadorPresencial1 =new CreadorPresencial();
+
+        Pedido presencial = creadorPresencial1.crearPedido("P001", "Ana Torres", 100.00);
+
+        System.out.println("--- Pedido presencial ---");
+        presencial.procesar();
+        presencial.mostrarInformacion();
+        presencial.generarComprobante();
+
+        System.out.println();
+
+        // Crear pedido en línea
+        CreadorPedido creadorEnLinea =new CreadorEnLinea();
+
+        Pedido enLinea = creadorEnLinea.crearPedido("P002", "Juan Pérez", 200.00);
+
+        System.out.println("--- Pedido en línea ---");
+        enLinea.procesar();
+        enLinea.mostrarInformacion();
+        enLinea.generarComprobante();
+
+        
+
+        
+
             }
         
-                private static void runPrototype() {
-            PlantillaEmail pemail= new PlantillaEmail("Aviso", "Pedido listo");
-            PlantillaEmail pEmailSolicitud= pemail.clone();
-            pEmailSolicitud.cambiarAsunto("Solicitud");
-            System.out.println(pemail.contenido());
-            System.out.println(pEmailSolicitud.contenido());
-        }
+          
+                                
+                //private static void runBuilder() {
+                //Pizza pizza = new PizzaBuilder().setSize("Large").addIngrediente("Jamon").addIngrediente("Queso")
+                //.addIngrediente("Salami").build(); 
+                //System.out.println(pizza.descripcion());
+
+                //Pizza pizza2= new PizzaBuilder().addIngrediente("Queso").build();
+           // }
+        
+               // private static void runPrototype() {
+            //PlantillaEmail pemail= new PlantillaEmail("Aviso", "Pedido listo");
+            //PlantillaEmail pEmailSolicitud= pemail.clone();
+           // pEmailSolicitud.cambiarAsunto("Solicitud");
+           // System.out.println(pemail.contenido());
+            //System.out.println(pEmailSolicitud.contenido());
+        //}
         
          //private static void runFactoryMethod() {
                        // Importador impPc= new ImportadorPuntoComa();

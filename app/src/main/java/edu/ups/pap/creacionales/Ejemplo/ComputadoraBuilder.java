@@ -1,4 +1,4 @@
-package edu.ups.pap.creacionales;
+package edu.ups.pap.creacionales.Ejemplo;
 
 public class ComputadoraBuilder {
     private String procesador;

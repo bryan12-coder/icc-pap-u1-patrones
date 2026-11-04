@@ -1,0 +1,26 @@
+package edu.ups.pap.estructurales.facade;
+/**
+ * esta clase es la Facade ---> Es la que coordina los componentes 
+ * necesarios para una accion necesaria
+ * para este caso ver una pelicula
+ * CineEnCasa
+ */
+
+public class CineEnCasa {
+    private final Proyector proyector;
+    private final Reproductor reproductor;
+
+    public CineEnCasa() {
+        this.proyector = new Proyector();
+        this.reproductor = new Reproductor();
+    }
+
+    public void iniciarPelicula(String nombre){
+        proyector.encender();
+        reproductor.reproducir(nombre);
+
+    }
+
+    
+    
+}

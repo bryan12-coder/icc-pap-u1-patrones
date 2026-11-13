@@ -1,0 +1,28 @@
+package edu.ups.pap.comportamiento.state;
+
+public class AppState {
+
+    public static void main(String[] args) {//Main hilo principal
+        Semaforo semaforo=new Semaforo();
+        System.out.println(semaforo.color());
+
+        semaforo.avanzar();
+
+        System.out.println(semaforo.color());
+
+        try {
+            Thread.sleep(3000);//Hilo esto es.
+            
+        } catch (Exception e) {
+            System.out.println("Error");
+           
+        }finally{
+            semaforo.avanzar();
+           System.out.println(semaforo.color());
+
+        }
+        
+
+    }
+    
+}
